@@ -28,7 +28,7 @@ rule salmon_index:
         threads: config['salmon.index_threads']
         conda: "envs/salmon.yaml"
         shell:
-            "salmon index --threads {threads} -t {input} -i {output} --type quasi -k 31"
+            "salmon index --threads {threads} -t {input} -i {output} -k 31"
 
 rule salmon_index_for_lib_types:
         input:
@@ -38,7 +38,7 @@ rule salmon_index_for_lib_types:
         threads: config['salmon.index_threads']
         conda: "envs/salmon.yaml"
         shell:
-            "salmon index --threads {threads} -t {input} -i {output} --type quasi -k 31"
+            "salmon index --threads {threads} -t {input} -i {output} -k 31"
 
 def get_input_files (wildcards):
         if wildcards.run_accession in set(metadata.loc[(metadata['pe_or_se'] == 'paired_end')]['run_accession']):
