@@ -121,7 +121,7 @@ rule sam_to_bam:
         threads: config['samtools.view.num_threads']
         conda:
 	   "envs/hisat2.yaml"
-	shell: "samtools view -@ {threads} -Sb  {input}  >  {output}"
+	shell: "~/miniforge3/envs/filtar/bin/samtools view -@ {threads} -Sb  {input}  >  {output}"
 
 rule samtools_sort:
     input:
