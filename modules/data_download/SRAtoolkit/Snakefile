@@ -21,14 +21,14 @@ rule download_single_end_fastq:
        output: "data/single_end/{accession}.fastq"
        conda: "envs/sra-tools.yaml"
        threads: 20
-       shell: "fasterq-dump -O data/single_end/ --threads {threads} {wildcards.accession}"
+       shell: "prefetch {wildcards.accession} && fasterq-dump -O data/single_end/ --threads {threads} {wildcards.accession}"
 
 rule download_paired_end_fastq:
        input:
        output: "data/paired_end/{accession}_1.fastq", "data/paired_end/{accession}_2.fastq"
        conda: "envs/sra-tools.yaml"
        threads: 20
-       shell: "fasterq-dump -O data/paired_end/ --threads {threads} {wildcards.accession}"
+       shell: "prefetch {wildcards.accession} && fasterq-dump -O data/paired_end/ --threads {threads} {wildcards.accession}"
 
 rule compress_single_end_fastq_files:
        input: "data/single_end/{accession}.fastq"
